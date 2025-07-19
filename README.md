@@ -37,7 +37,7 @@ dotnet run
 ## 📦 Struktur File
 
 * `Address.txt`：Setiap baris berisi satu alamat Ethereum.
-* `Proxy.txt`：Setiap baris berisi satu proxy, mendukung format berikut (tidak mendukung SOCKS), Kamu bisa membeli Proxy murah di [nstproxy]([url](https://app.nstproxy.com/register?i=G5NkUo))
+* `Proxy.txt`：Setiap baris berisi satu proxy, mendukung format berikut (tidak mendukung SOCKS), Kamu bisa membeli Proxy murah di [nstproxy]((https://app.nstproxy.com/register?i=G5NkUo))
 
 ```txt
 ip:port
