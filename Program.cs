@@ -19,12 +19,12 @@ namespace Irys_Spritetype
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             LoadPrivateKeyAndProxyAndLog();
 
-            Console.Write("请输入每个账号执行多少次脚本：");
+            Console.Write("Silakan masukkan berapa kali setiap akun akan mengeksekusi skrip:");
             var inputCount = Console.ReadLine();
             if (int.TryParse(inputCount, out int count) && count > 0)
                 ScriptRunCount = count;
 
-            Console.Write("请选择运行模式（1.安全模式 2.极速模式）：");
+            Console.Write("Silakan pilih mode operasi (1. Mode Aman 2. Mode Cepat）：");
             var inputMode = Console.ReadLine();
             if (int.TryParse(inputMode, out int mode) && (mode == 1 || mode == 2))
                 RunMode = mode;
@@ -46,7 +46,7 @@ namespace Irys_Spritetype
                             if (account.FailTime < 15)
                                 account.FailTime += 1;
                             account.NextExecutionTime = DateTime.Now.AddSeconds(10);
-                            ShowMsg($"执行异常(第{account.FailTime}次): {ex.Message}", 3);
+                            ShowMsg($"Pengecualian eksekusi(ke-{account.FailTime}): {ex.Message}", 3);
                         }
                     }
                 }
@@ -117,8 +117,8 @@ namespace Irys_Spritetype
             }
             catch(Exception ex)
             {
-                ShowMsg($"提交失败："+ex.Message, 3);
-                return "提交失败";
+                ShowMsg($"Pengiriman gagal："+ex.Message, 3);
+                return "Pengiriman gagal";
             }
                 
             string responseBody = await response.Content.ReadAsStringAsync();
@@ -130,9 +130,9 @@ namespace Irys_Spritetype
                 {
                     waitSeconds = sec;
                 }
-                ShowMsg($"接口已限制，等待{waitSeconds}秒后重试...", 2);
+                ShowMsg($"Antarmuka dibatasi, coba lagi setelah{waitSeconds}detik...", 2);
                 Thread.Sleep(waitSeconds * 1000);
-                return "接口限制原因，提交失败";
+                return "Pengiriman gagal karena batasan antarmuka";
             }
             try
             {
@@ -140,8 +140,8 @@ namespace Irys_Spritetype
             }
             catch (HttpRequestException ex)
             {
-                ShowMsg($"异常信息:" +ex.Message , 2);
-                return "，提交失败:" + responseBody;
+                ShowMsg($"Informasi pengecualian:" +ex.Message , 2);
+                return "，pengiriman gagal:" + responseBody;
             }
             var json = System.Text.Json.JsonDocument.Parse(responseBody);
             json.RootElement.TryGetProperty("message", out var nonceElement);
@@ -150,7 +150,7 @@ namespace Irys_Spritetype
             {
                 return ret;
             }
-            throw new Exception("Spritetype失败");
+            throw new Exception("Spritetype gagal");
         }
         static string ComputeAntiCheatHash(string e, int t, int a, int r, int s, int i)
         {
@@ -173,12 +173,12 @@ namespace Irys_Spritetype
 
         public static async Task Script(AccountInfo accountInfo)
         {
-            ShowMsg($"当前时间: {DateTime.Now:yyyy-MM-dd HH:mm:ss}", 0);
-            ShowMsg("当前执行账号:" + accountInfo.Index + " - " + accountInfo.Address, 0);
+            ShowMsg($"Waktu saat ini: {DateTime.Now:yyyy-MM-dd HH:mm:ss}", 0);
+            ShowMsg("Akun yang sedang dieksekusi:" + accountInfo.Index + " - " + accountInfo.Address, 0);
             for (int i = 0; i < ScriptRunCount; i++)
             {
                 string SpritetypeResult = await Spritetype(accountInfo);
-                ShowMsg($"第{i + 1}次-成绩提交:" + SpritetypeResult, 1);
+                ShowMsg($"Pengiriman hasil ke-{i + 1}:" + SpritetypeResult, 1);
                 if(!SpritetypeResult.Contains("Successfully submitted to leaderboard!"))
                 {
                     i = i - 1;
@@ -189,7 +189,7 @@ namespace Irys_Spritetype
                 }
                 else
                 {
-                    ShowMsg("35秒后进行下一轮", 1);
+                    ShowMsg("Melanjutkan putaran berikutnya setelah 35 detik", 1);
                     Thread.Sleep(35000);
                 }
 
@@ -205,7 +205,7 @@ namespace Irys_Spritetype
             string[] proxy = File.ReadAllLines("Proxy.txt");
             if (address.Length == 0)
             {
-                ShowMsg("未写Address信息，程序即将退出！！！", 3);
+                ShowMsg("Informasi Alamat tidak ditulis, program akan segera keluar！！！", 3);
                 Thread.Sleep(3000);
                 Environment.Exit(0);
             }
@@ -230,12 +230,12 @@ namespace Irys_Spritetype
                 }
                 catch (Exception ex)
                 {
-                    ShowMsg($"私钥无效: {key} ({ex.Message})", 3);
+                    ShowMsg($"Kunci pribadi tidak valid: {key} ({ex.Message})", 3);
                 }
             }
             if (AccountInfoList.Count == 0)
             {
-                ShowMsg("没有有效的私钥，程序即将退出！", 3);
+                ShowMsg("Tidak ada kunci pribadi yang valid, program akan keluar！", 3);
                 Thread.Sleep(3000);
                 Environment.Exit(0);
             }
@@ -252,7 +252,7 @@ namespace Irys_Spritetype
                 {
                     if (line.StartsWith("socks", StringComparison.OrdinalIgnoreCase))
                     {
-                        ShowMsg($"不支持 SOCKS 代理，请改用Http或Https代理， {line}", 2);
+                        ShowMsg($"Tidak mendukung proxy SOCKS，silakan gunakan proxy Http atau Https， {line}", 2);
                         continue;
                     }
 
@@ -275,11 +275,11 @@ namespace Irys_Spritetype
                 }
                 catch (Exception ex)
                 {
-                    ShowMsg($"代理格式错误: {line} ({ex.Message})", 3);
+                    ShowMsg($"Format proxy salah: {line} ({ex.Message})", 3);
                 }
             }
             int proxyCount = AccountInfoList.Count(x => x.Proxy is not null);
-            ShowMsg($"已加载 {proxyCount} 条代理", proxyCount > 0 ? 1 : 2);
+            ShowMsg($"Telah memuat {proxyCount}", proxyCount > 0 ? 1 : 2);
         }
         public static string GetRandomUserAgent()
         {
