@@ -55,13 +55,9 @@ https://username:password@ip:port
 ## 🌌 Screenshot Saat Berjalan
 Gambar di bawah ini adalah diagram antarmuka terminal saat skrip berjalan:
 
-![运行截图](screenshot.png)
+<img width="1151" height="614" alt="image" src="https://github.com/user-attachments/assets/6ec3faa5-f806-4920-af0f-c6813a65cb57" />
 
 
-
-## 🤝 贡献指南
-
-欢迎提交 Issues 或 Pull Requests
 
 ---
 
