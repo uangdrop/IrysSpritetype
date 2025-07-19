@@ -4,7 +4,7 @@
 #### Ini adalah skrip mudah yang digunakan untuk secara otomatis menyelesaikan tugas game Spritetype di platform Irys.
 
 ## 📝 Deskripsi Fitur
-- Saat diluncurkan, Anda dapat menyesuaikan berapa kali setiap grup akun akan menjalankan game mengetik kecil (N kali).
+- Saat diluncurkan, Anda dapat menyesuaikan berapa kali setiap grup akun akan menjalankan game Spritetype (N kali).
 - Mendukung dua mode operasi:
   - **Mode Aman**: Jeda 35 detik di antara setiap sesi mengetik (berdasarkan frekuensi kontrol risiko game).  
   - **Mode Cepat**: Jeda 1 detik di antara setiap sesi mengetik (risiko tinggi, cocok untuk pengujian).
