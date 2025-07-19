@@ -60,6 +60,7 @@ Gambar di bawah ini adalah diagram antarmuka terminal saat skrip berjalan:
 
 ## ☘️ Video Tutorial
 Video Guide telah di Upload di [Channel Kami](https://t.me/uangdrop/40744) 
+
 <img width="447" height="384" alt="image" src="https://github.com/user-attachments/assets/dcab275b-46c7-425e-9be5-2e1ae464f7d2" />
 
 
