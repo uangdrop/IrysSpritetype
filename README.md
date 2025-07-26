@@ -26,7 +26,7 @@
 2. Buka terminal (CMD / PowerShell / Terminal), clone dan masuk ke direktori Irys:
 ```
 git clone https://github.com/uangdrop/IrysSpritetype.git
-cd Irys_Spritetype
+cd IrysSpritetype
 ```
 3. Jalankan skrip：
 ```
